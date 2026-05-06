@@ -18,7 +18,7 @@ class CircleShape(pygame.sprite.Sprite):
         pass
     def update(self, dt):
         pass
-    def colllides_with(self, other):
+    def collides_with(self, other):
         distance = self.position.distance_to(other.position)
         return distance <= (self.radius + other.radius)   
         

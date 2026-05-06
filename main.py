@@ -33,15 +33,21 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        screen.fill(color="black")
         updatable.update(dt)
+        screen.fill(color="black")
         for object in asteroids:
             if object.collides_with(player) == True:
                 log_event("player_hit")
                 print ("Game over!") 
-                sys.exit()   
+                sys.exit()
+            for shot in shots:    
+                if shot.collides_with(object) == True:
+                    log_event("asteroid_shot")
+                    object.kill()
+                    shot.kill()         
         for sprite in drawable:
             sprite.draw(screen)
+            
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
